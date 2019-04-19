@@ -1,0 +1,200 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>Spring框架中的IOC和DI</h3>
+			<p></P>
+            <h4>Java小课堂</h4>
+            <p>分享人：徐海鹏</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+
+        <section>
+            <h>什么是Spring？</h>
+        </section>
+
+        <section>
+            <p style="text-align:left">Spring是一个开源的，轻量级的java开发框架，由悉尼大学计算机博士Rod Johnson所创建。它是为了解决企业应用开发的复杂性而创建，但Spring的用途不仅限于服务器端的开发，从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。</p>
+        </section>
+
+		<section>
+            <h3>2.知识剖析</h3>
+        </section>
+
+        <section>
+            <h>Spring的核心功能</h>
+        </section>
+
+        <section>
+            <p style="text-align:left">Spring容器作为超级大工厂，负责创建、管理所有的Java对象，这些Java对象被称为Bean</p>
+            <p style="text-align:left">Spring容器管理容器中Bean之间的依赖关系，Spring使用DI来管理Bean之间的依赖关系。</p>
+        </section>
+
+        <section>
+            <h>IoC和DI</h>
+        </section>
+
+        <section>
+			<p style="text-align:left">1.IoC（inversion of Control，控制反转），IoC不是一种技术，而是一种思想，一个面向对象编程的法则，它能使我们设计出松耦合、更优良的程序。</p>
+			<p style="text-align:left">2.DI（Dependency injection，依赖注入）即由容器动态地将某个依赖关系注入到组件之中。它提升了组件重用的频率，并为系统搭建一个灵活的、可扩展的平台。</p>
+            <p style="text-align:left">所以不管是依赖注入还是控制反转，其含义其实是相同的。当某个Java对象（调用者）需要调用另一个Java对象（被依赖对象）的方法时,我们就有了两种方式。</p>
+        </section>
+
+        <section>
+            <h>传统方式和IOC/DI</h>
+        </section>
+
+        <section>
+            <p style="text-align:left">1.传统的方式：我们在程序中通过new关键字主动创建一个对象，这就是控制正转了</p>
+            <p style="text-align:left">2.IOC方式：对象的生命周期由Spring来管理，直接从Spring那里去获取一个对象。 就像控制权从本来在自己手里，交给了Spring。 </p>
+        </section>
+
+        <section>
+            <h>Spring中的工厂（容器）</h>
+        </section>
+
+        <section>
+            <p style="text-align:left">BeanFactory：是在getBean的时候才会创建类的实例，以前电脑资源比较贫乏，为了节约电脑资源</p>
+            <p style="text-align:left">ApplicationContext：在加载ApplicationContext.xml（容器启动）时就会创建。</p>
+            <p style="text-align:left">所以在开发中，一般情况下我们使用ApplicationContext，在资源匮乏的环境中可选择BeanFactory。</p>
+        </section>
+
+        <section>
+            <h>DI注入对象的方式</h>
+        </section>
+
+        <section>
+            <h>1.setter方法注入★</h>
+        </section>
+
+        <section>
+            <h>2.构造方法注入☆</h>
+        </section>
+
+         <section>
+            <h3>3.常见问题</h3>
+        </section>
+        <section>
+            <p style="text-align:center">1.Spring中的BeanFactory与ApplicationContext的作用和区别？</p>
+            <p style="text-align:center">2.为什么要用IoC而不是NEW来创建实例</p>
+        </section>
+		
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+
+        <section>
+			<p style="text-align:left">1.1BeanFactory负责读取bean配置文档，管理bean的加载，实例化，维护bean之间的依赖关系，负责bean的生命周期。</p>
+            <p style="text-align:left">1.2ApplicationContext除了提供上述BeanFactory所能提供的功能之外，还提供了更完整的框架功能：
+            比如资源访问，事件传递，通过ApplicationContext扩展了ResourceLoader(资源加载器)接口。</p>
+            <p style="text-align:left">1.3ApplicationContext的初始化和BeanFactory有一个重大的区别:BeanFactory在初始化容器时，并未实例化Bean,直到第一次访问某个Bean时才实例目标Bean;而ApplicationContext则在初始化应用上下文时就实例化所有的单实例的Bean。因此ApplicationContext的初始化时间会比BeanFactory稍长一些.</p>
+		</section>
+
+        <section>
+            <p style="text-align:left">2.用IoC而不是NEW创建实例是因为直接使用NEW在本类创建实例，会导致代码耦合度高，不利于对象的复用以及程序的维护和测试。
+                而IoC将把创建和查找依赖对象的控制权交给了容器，由容器进行注入组合对象，所以对象与对象之间是松散耦合。</p>
+        </section>
+
+        <section>
+            <h3>5.编码实战</h3>
+        </section>
+
+        <section>
+            <h3>6.扩展思考</h3>
+        </section>
+
+        <section>
+            <p style="text-align:left">Spring注入方式全面简化了Java开发，简化了哪些？简化了的部分是最优方案么？还有更优质的方案么？</p>
+        </section>
+
+        <section>
+            <h3>7.参考文献</h3>
+			<p style="text-align:center">百度百科，菜鸟教程</p>
+        </section>
+		
+        <section>
+            <h3>8.更多讨论</h3>
+            <p>今天的分享就到这里啦，欢迎大家提问和探讨!</p>
+        </section>
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
