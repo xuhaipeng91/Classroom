@@ -1,0 +1,177 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Postman</h2>
+            <h3>小课堂</h3>
+            <p>分享人：徐海鹏</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+        <section>
+            <h3>什么是API接口测试</h3>
+            <p> API接口测试是测试系统组件之间接口是否正确的一种测试。接口测试主要用于检测外部系统之间以及内部各个子系统之间的交互点。
+                测试的重点是要检查数据的交互、传递和控制管理过程，以及系统间的相互逻辑依赖关系等。</p>
+        </section>
+        <section>
+            <h3>为什么要测试API接口</h3>
+            <p> 由于如今的系统复杂度不断上升，传统的测试方式成本急剧增加且测试效率低下，而接口测试相对于传统测试容易实现自动化持续集成，
+                且UI自动化稳定，可缩短测试周期，支持后端快速发布版本需求。</p>
+        </section>
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+            <p>Postman是什么？</p>
+        </section>
+        <section>
+            <p> Postman首次推出是在2012年10月，原本它只是Chrome商店中的一个浏览器插件，后来因为发展迅速的原因在2014年的时候，Postman注册成了一家公司，并且
+                Postman也不仅仅再是以插件的模式在Chrome运行了，它有了独立运行在系统程序上的C端，也就是我们现在常用的Postman软件。</p>
+        </section>
+        <section>
+            <p>为什么要用postman测试接口?</p>
+        </section>
+        <section>
+            <p> 在做接口测试的时候，Postman相当于一个客户端，它可以模拟用户发起的各类http请求，将请求数据发送至服务端，获取对应的响应结果，
+                从而验证响应中的结果数据是否和预期值匹配，并确保开发人员能够及时处理接口中的bug，进而保证产品上线之后的稳定性和安全性。</p>
+        </section>
+
+        <section>
+            <h3>3.界面介绍与演示</h3>
+        </section>
+
+        <section>
+            <h3>4.常见问题</h3>
+        </section>
+        <section>
+            <p>后端接口都测试什么？</p>
+        </section>
+        <section>
+            <p>后端测试包括：业务功能测试、边界分析测试、参数组合测试、异常情况测试、性能测试、安全测试这6个大类。</p>
+        </section>
+        <section>
+            <p>除postman外，还有什么测试接口程序？</p>
+        </section>
+        <section>
+            <br>insomnia：postman的弱化版，基本功能免费，重要的是工具代码开源，可以自己改。
+            <br>paw: mac上最好用，不过是收费软件。
+        </section>
+
+        <section>
+            <h3>5.扩展思考</h3>
+        </section>
+        <section>
+            <p>1.API接口和java中的interface接口是一个意思吗？</p>
+        </section>
+        <section>
+            <p>当然不是</p>
+            <p>interface是代码层面的接口，它的作用范围仅仅文件层面；而API是程序层面的接口，它的作用范围是两个代码量巨大的程序</p>
+        </section>
+        <section>
+            <p>2.get请求，post请求有什么区别？</p>
+        </section>
+        <section>
+            <p>● get请求使用url或Cookie传参。而post将数据放入body中</p>
+            <p>● get的url会有长度限制，而post的数据因为放到body中，所以可以非常大</p>
+            <p>● post比get安全，因为get的所有数据在url上可见，而post只有条件数据在url上</p>
+            <p>● 一般get请求用来获取数据，post请求用来发送数据</p>
+        </section>
+
+        <section>
+            <h3>6.参考文献</h3>
+            <p>CSDN博客：https://blog.csdn.net/weixin_42273775/article/details/81868184</p>
+            <p>博客园：https://www.cnblogs.com/lanmosonny/p/8694667.html</p>
+        </section>
+
+        <section>
+            <h3>7.更多讨论</h3>
+            <p>欢迎大家交流和讨论</p>
+        </section>
+
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢大家观看</p>
+            <p>BY : 徐海鹏</p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
