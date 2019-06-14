@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>tiles框架</h3>
+            <h4>小课堂</h4>
+            <p>分享人：徐海鹏</p>
+        </section>
+
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+
+        <section>
+            <h3>1.背景介绍 </h3>
+        </section>
+        <section>
+            <p align="left">假如有一个超级大的电子商务网站，网站拥有10万个JSP页面，并且每个JSP都引用了同一个JSP（我们称这个JSP页面为A吧）。现在你就是这个网站的开发人员，有一天老板跑到你面前说：“大量用户反馈页面A设计得太丑，严重影响用户体验，如果不在今天之内改进，他们就集体去竞争对手那里购物，所以你今天必须要让页面A从网站上消失，否则炒鱿鱼走人”，这个凶神恶霸的老板说完就甩手走出去了，你没有任何辩解的机会。这时，恐怕你不会觉得自己一人能够搞定，那怎么办？程序员都有很多好基友，找一百个基友来一起改，每人只需要改1000个页面。不然，只有垂头丧气地收拾好东西离职了。</p>
+        </section>
+        <section>
+            <p align="left">那么，要是有一天老板又跑过来找你，让你为每个JSP页面的底部加一个跳舞的小黄人，又该怎么办呢？先找前端工程师设计好跳舞的小黄人，然后用include标签插入到10万个JSP页面。10万个啊，又得请一百个好基友帮忙了！要是老板后面又要在网站顶端加一只唱歌的小鸟、在网站右边加一个工具栏…估计你的好基友要用砖头来砸你了。</p>
+        </section>
+        <section>
+            <p align="left">那有没有一种方法，可以不用请一百个好基友帮忙，就可以在十分钟之内完成老板交给你的任务？也许你会觉得这简直是胡说八道，在十分钟内改完10万个JSP页面就是一种疯狂的想法。也许这是对的，就是一个疯狂的想法，不清楚Tiles的设计者当初也是否受到过这种老板的虐待，所以才设计出了这样一个疯狂的产品—— Tiles 。</p>
+        </section>
+        <section>
+            <p align="left">没错，Tiles就是为你遇到的这种需求服务的。一旦你在网站系统中使用了Tiles技术，若老板让你删除10万个页面所引用的一个JSP，如果你的速度快的话，你可以在10秒钟之内解决。那要想再让这10万个页面去引用一个JSP呢？也是一样的操作，非常简单。</p>
+
+        </section>
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+            <p>tiles的作用</p>
+        </section>
+        <section>
+            <p align="left">所有的网站都有一些共同点：它们由共享类似结构的页面组成。页面共享相同的布局，而每个页面由不同的独立部分组成，但始终放置在整个站点的相同位置。</p>
+            <p align="left">为了方便大家理解，我们来看一个例子。</p>
+        </section>
+        <section>
+            <p>
+                <img src="tiles.png">
+            </p>
+        </section>
+        <section>
+            <p align="left">正如我们看到的，这两个页面是不同的，但是不同的地方仅仅是body这部分区域。于是我们想，有没有好的办法能够把共通的地方复用起来，让我们维护的页面尽可能的少。这就tiles的作用所在了。</p>
+        </section>
+        <section>
+            <p>tiles的配置</p>
+        </section>
+        <section>
+            <p>定义：definition</p>
+            <p>定义是呈现给最终用户的组合物；本质上，一个定义是由一个模板和完全或部分填充的属性组成的。说白了就是：一个定义是由一个模板和属性组成的。</p>
+        </section>
+        <section>
+            <p>模板:Template</p>
+            <p align="left">在Tiles中，模板（Template）是一个页面的布局部分。你能将一个页面结构看成是由不同的需要填补空白组成。</p>
+            <p align="left">注意：一个模板（Template）可以没有属性（attributes）,这种情况下该模板可以直接使用。有属性的话就要先定义属性才能使用，不然的话就会在解析jsp页面的时候报错</p>
+        </section>
+        <section>
+            <p>属性：Attribute</p>
+            <p>属性是模板中的空白，它在你的应用程序中被填充到模板中。</p>
+        </section>
+        <section>
+            <h3>3.常见问题</h3>
+        </section>
+        <section>
+            <p>include也可以实现多个jsp共用一个jsp的内容,为什么要使用tiles呢?</p>
+        </section>
+
+        <section>
+            <h3>4.解决方案</h3>
+        </section>
+        <section>
+            <p>刚接触web开发的人或许知道jsp可以通过include标签动态插入一个jsp页面,这样可以实现多个jsp页面共用一个jsp的内容.但是如果有一个超级大网站,jsp页面以万计呢?</p>
+        </section>
+
+        <section>
+            <h3>5.编码实战</h3>
+        </section>
+
+        <section>
+            <h3>6.扩展思考</h3>
+        </section>
+        <section>
+            <p>1、在Spring MVC应用程序中，我们经常需要应用一些视图解析器策略来解析视图名称。如果返回了一个视图的名称，那么，使用哪一个视图解析器策略?</p>
+        </section>
+        <section>
+            <p>如果应用了多个视图解析器策略，那么就必须通过“order”属性来声明优先级，order值越低，则优先级越高</p>
+        </section>
+        <section>
+            <p>2、除了tiles还有别的模板复用框架么？</p>
+        </section>
+        <section>
+            <p>市面上还有许多的，比如beetl、sitemesh、thymeleaf、 freemarker等等</p>
+        </section>
+
+        <section>
+            <h3>7.参考文献</h3>
+            <p>参考一:<a href="https://blog.csdn.net/aosica321/article/details/68948915"></a>tiles 框架干货讲解</p>
+            <p>参考三:<a href="http://blog.csdn.net/wang1988081309/article/details/51895482"></a>SpringMVC视图解析器：配置多个视图解析器的优先级 </p>
+        </section>
+        <section>
+            <h3>8.更多讨论</h3>
+            <p>欢迎大家交流和讨论</p>
+        </section>
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢大家观看</p>
+            <p><small>BY : 徐海鹏</small></p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
