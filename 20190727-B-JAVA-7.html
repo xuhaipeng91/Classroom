@@ -1,0 +1,196 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>葡萄藤PPT</title>
+
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/reveal.css">
+
+    <!-- PPT主题，可以在/css/reveal/theme/中选择其他主题，目前暂时只能使用该模板 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/css/reveal/theme/ptt.css">
+
+    <!-- syntax highlighting 代码高亮主题 -->
+    <link rel="stylesheet" href="https://ptteng.github.io/PPT/lib/reveal/css/zenburn.css">
+
+    <!-- 打印和PDF输出样式 -->
+    <script>
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? 'https://ptteng.github.io/PPT/css/reveal/print/pdf.css' : '../css/reveal/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+</head>
+<body>
+<img src="https://ptteng.github.io/PPT/img/demo/logo.png" alt="" usemap="#pttmap" class="base-logo">
+<map name="pttmap">
+    <area shape="rect" coords="0,0,276,58" href="http://www.jnshu.com" alt="" target="_blank"/>
+</map>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>RMI</h2>
+			<p></p>
+            <p>分享人：徐海鹏</p>
+        </section>
+        <section>
+            <p>1.背景介绍</p>
+            <p>2.知识剖析</p>
+            <p>3.常见问题</p>
+            <p>4.解决方案</p>
+            <p>5.编码实战</p>
+            <p>6.扩展思考</p>
+            <p>7.参考文献</p>
+            <p>8.更多讨论</p>
+        </section>
+        <section>
+            <h3>1.背景介绍</h3>
+        </section>
+        <section>
+            <p>RPC是什么</p>
+            <p>RPC（Remote Procedure Call) 翻译过来叫远程过程调用，加上 Protocol 之后也有称之为远程过程调用协议，可以由不同的语言实现，
+                根据维基百科的解释 —— RPC 指在分布式环境下，一个计算机程序能调用另一个不同地址空间里的方法（不同地址空间通常指局域网下的另一台计算机），
+                但是编码的形式就像调用一个本地方法一样，程序员不用去关心背后的细节。</p>
+        </section>
+        <section>
+            <p>RMI是什么</p>
+			<p>​Java RMI，即 远程方法调用(Remote Method Invocation)，一种用于实现远程过程调用(RPC)(Remote procedure call)的Java API，
+                能直接传输序列化后的Java对象和分布式垃圾收集。它的实现依赖于Java虚拟机(JVM)，因此它仅支持从一个JVM到另一个JVM的调用。</p>
+        </section>
+        <section>
+            <h3>2.知识剖析</h3>
+        </section>
+        <section>
+		  <img src="RMI.png">
+		</section>
+        <section>
+            <h4>客户端(Client)</h4>
+            <p>桩(StubObject)：远程对象在客户端上的代理</p>
+            <p>远程引用层(RemoteReference Layer)：解析并执行远程引用协议</p>
+            <p>传输层(Transport)：发送调用、传递远程方法参数、接收远程方法执行结果</p>
+        </section>
+        <section>
+            <h4>服务端(Server)</h4>
+            <p>骨架(Skeleton)：读取客户端传递的方法参数，调用服务器方的实际对象方法，并接收方法执行后的返回值</p>
+            <p>远程引用层(Remote ReferenceLayer)：处理远程引用语法之后向骨架发送远程方法调用</p>
+            <p>传输层(Transport)：监听客户端的入站连接，接收并转发调用到远程引用层</p>
+        </section>
+		<section>
+		   <p> RMI远程访问基本流程</p>
+		   <p> 1). 服务端定义远程访问接口;</p>
+		   <p> 2). 服务端通过RmiServiceExporter暴露服务接口</p>
+		   <p> 3). 客户端定义与服务端已暴露的相同接口</p>
+		   <p> 4). 客户端通过RmiProxyFactoryBean调用服务接口</p>
+		</section>
+	    <section>
+            <p>RMI远程调用步骤：</p>
+            <p>方法调用从客户对象经占位程序（Stub)、远程引用层(Remote Reference Layer)和传输层（Transport Layer）向下， 传递给主机，然后再次经传 输层，向上穿过远程调用层和骨干网（Skeleton），到达服务器对象。 </p>
+            <p>占位程序扮演着远程服务器对象的代理的角色， 使该对象可被客户激活。 远程引用层处理语义、管理单一或多重对象的通信，决定调用是发往一个服务器还是多个。</p>
+		</section>
+        <section>
+            <p>传输层管理实际的连接，并且追追踪可以接受方法调用的远程对象。服务器端的骨干网完成对服务器对象实际的方法调用，并获取返回值。</p>
+            <p>返回值向下经远程引用层、服务器端的传输层传递回客户端，再向上经传输层和远程调用层返回。最后，占位程序获得返回值。</p>
+        </section>
+	    <section>
+            <h3>注意</h3>
+			<p>1、RMI是很难穿越防火墙的；</p>
+
+			<p>2、RMI是基于Java的，这意味着客户端和服务端必须都是采用Java开发的；</p>
+
+			<p>3、因为RMI使用了Java的序列化机制，所以通过网络传输的对象类型必须保证在调用的两端是相同的版本。</p>
+        </section>
+         <section>
+            <h3>3.常见问题</h3>
+        </section>
+		<section>
+            <p>客户端连接不到服务</p>
+            <p>1、服务端没有运行</p>
+            <p>2、服务端防火墙限制</p>
+		</section>
+        <section>
+            <p>RPC 和 RMI 的区别</p>
+            <p>RPC 更像一种协议，可以跨语言实现，而 RMI 仅支持 Java，需要双方都运行在 JVM 中</p>
+            <p>RPC 通过传入 class 和 methodName 的形式利用反射和代理类调用该方法；RMI 需要依靠方法签名去 lookUp，找到了该方法之后调用它</p>
+            <p>RMI 支持 Java 对象和基本数据类型，而 RPC 通常借助不同的序列化协议来进行网络传输，有编解码的过程</p>
+        </section>
+        <section>
+            <h3>5.编码实战</h3>
+        </section>
+        <section>
+            <h3>6.扩展思考</h3>
+        </section>
+        <section>
+            <p>分布式应用的优点</p>
+            <p>1.降低耦合度，增删一个功能，不会影响其它功能模块</p>
+            <p>2.因为优点1的存在，对于团队来说，可以更好的分配开发任务，比如各个团队负责一个独立的模块，开发完成后，只需要利用webservice服务的形式将模块的功能以API的形式开放出来</p>
+        </section>
+        <section>
+            <p>REST 和 RPC 的区别</p>
+            <p>REST 是一种架构风格，面向资源（由一个 URL 唯一指定），主要是名词，它很好的利用了 HTTP 中已有的请求方法（PUT、POST、GET、DELETE）做操作形式的区分</p>
+            <p>而 RPC 主要是动词组成，面向方法，例如方法名为 queryAllBooks，通过客户端和服务端共有的一个方法来进行调用，编码的时候可以像使用本地方法一样，编码效率更高。</p>
+            </section>
+        <section>
+            <p>REST 基于 HTTP 传输协议，RPC 的传输协议可以不基于 HTTP，可以采用 TCP、UDP、HTTP、管道通信等技术去实现</p>
+            <p>后端服务间调用 RPC 性能通常更高，因为实现更底层、封装的数据量更小；而前端请求则通常采用 REST，因为一定要走 HTTP 协议</p>
+            <p>采用 REST 风格的 API，如果一旦要新增一个删除书籍的方法，那么 URL 地址依据不变，变化的仅是请求方法改为 DELETE；而 RPC 如果要增加这个方法，那么必须新建一个 deleteBook(int bookId) 的方法，客户端需要调用这个新方法达成功能</p>
+            </section>
+        <section>
+            <p>但是因为 REST 基于 HTTP 协议，因此通常会有前端代理进行请求分发，这种前端代理层的水平扩展不太容易；但 RPC 服务借助注册中心可以轻易实现服务节点的增删和动态调整</p>
+        </section>
+        <section>
+            <h3>7.参考文献</h3>
+            <p>https://blog.csdn.net/chen_kkw/article/details/82823372</p>
+			<p>https://www.jianshu.com/p/de85fad05dcb</p>
+        </section>
+        <section>
+            <h3>8.更多讨论</h3>
+            <p></p>
+        </section>
+        <section>
+            <h4>鸣谢</h4>
+            <p>感谢观看,如有出错,恳请指正</p>
+        </section>
+
+    </div>
+</div>
+
+<script src="https://ptteng.github.io/PPT/lib/reveal/js/head.min.js"></script>
+<script src="https://ptteng.github.io/PPT/lib/reveal/reveal.js"></script>
+
+<script>
+
+    // 以下为常见配置属性的默认值
+    // {
+    // 	controls: true, // 是否在右下角展示控制条
+    // 	progress: true, // 是否显示演示的进度条
+    // 	slideNumber: false, // 是否显示当前幻灯片的页数编号，也可以使用代码slideNumber: 'c / t' ，表示当前页/总页数。
+    // 	history: false, // 是否将每个幻灯片改变加入到浏览器的历史记录中去
+    // 	keyboard: true, // 是否启用键盘快捷键来导航
+    // 	overview: true, // 是否启用幻灯片的概览模式，可使用"Esc"或"o"键来切换概览模式
+    // 	center: true, // 是否将幻灯片垂直居中
+    // 	touch: true, // 是否在触屏设备上启用触摸滑动切换
+    // 	loop: false, // 是否循环演示
+    // 	rtl: false, // 是否将演示的方向变成RTL，即从右往左
+    // 	fragments: true, // 全局开启和关闭碎片。
+    // 	autoSlide: 0, // 两个幻灯片之间自动切换的时间间隔（毫秒），当设置成 0 的时候则禁止自动切换，该值可以被幻灯片上的 ` data-autoslide` 属性覆盖
+    // 	transition: 'default', // 切换过渡效果，有none/fade/slide/convex/concave/zoom
+    // 	transitionSpeed: 'default', // 过渡速度，default/fast/slow
+    // 	mouseWheel: true, //是否启用通过鼠标滚轮来切换幻灯片
+    // }
+
+    // 初始化幻灯片
+    Reveal.initialize({
+        history: true,
+        dependencies: [
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/marked.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/markdown/markdown.js' },
+            { src: 'https://ptteng.github.io/PPT/plugin/notes/notes.js', async: true },
+            { src: 'https://ptteng.github.io/PPT/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+    });
+</script>
+</body>
+</html>
